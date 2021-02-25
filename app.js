@@ -10,9 +10,12 @@ const CANVAS_SIZE = 700;
 canvas.width = CANVAS_SIZE;
 canvas.height = CANVAS_SIZE;
 
+ctx.fillStyle = "white";
+ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
 ctx.strokeStyle = INITILA_COLOR;
 ctx.strokeStyle = INITILA_COLOR;
 ctx.lineWidth = 2.5;
+
 let painting = false;
 let filling = false;
 
