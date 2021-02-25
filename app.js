@@ -92,16 +92,6 @@ function handleSaveClick(event) {
   link.click();
 }
 
-function handlePointer(x, y) {
-  // const pointer_x = event.clientX;
-  // const pointer_y = event.clientY;
-  // pointer.style.width = `${ctx.lineWidth + 5}px`;
-  // pointer.style.height = `${ctx.lineWidth + 5}px`;
-  // pointer.style.backgroundColor = ctx.strokeStyle;
-  // pointer.style.left = `${x}px`;
-  // pointer.style.top = `${y}px`;
-}
-
 if (canvas) {
   canvas.addEventListener("mousemove", onMouseMove);
   canvas.addEventListener("mousedown", startPainting);
