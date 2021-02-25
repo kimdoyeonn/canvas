@@ -4,9 +4,12 @@ const colors = document.getElementsByClassName("jsColor");
 const range = document.getElementById("jsRange");
 const mode = document.getElementById("jsMode");
 const saveBtn = document.getElementById("jsSave");
+const pointer = document.getElementById("jsPointer");
 
 const INITILA_COLOR = "#2c2c2c";
 const CANVAS_SIZE = 700;
+
+const POINTER_SIZE = "10px";
 
 canvas.width = CANVAS_SIZE;
 canvas.height = CANVAS_SIZE;
@@ -16,6 +19,10 @@ ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
 ctx.strokeStyle = INITILA_COLOR;
 ctx.strokeStyle = INITILA_COLOR;
 ctx.lineWidth = 2.5;
+
+pointer.style.width = POINTER_SIZE;
+pointer.style.height = POINTER_SIZE;
+pointer.style.backgroundColor = INITILA_COLOR;
 
 let painting = false;
 let filling = false;
@@ -32,10 +39,14 @@ function onMouseMove(event) {
   const x = event.offsetX;
   const y = event.offsetY;
 
+  pointer.style.left = `${event.clientX + 15}px`;
+  pointer.style.top = `${event.clientY - 15}px`;
   if (!painting) {
+    pointer.style.display = "block";
     ctx.beginPath();
     ctx.moveTo(x, y);
   } else {
+    pointer.style.display = "none";
     ctx.lineTo(x, y);
     ctx.stroke();
   }
@@ -45,6 +56,7 @@ function changeColorClick(event) {
   const color = event.target.style.backgroundColor;
   ctx.strokeStyle = color;
   ctx.fillStyle = color;
+  pointer.style.backgroundColor = color;
 }
 
 function handleRangeChange(event) {
@@ -78,6 +90,16 @@ function handleSaveClick(event) {
   link.href = image;
   link.download = "PaintJS[🎨]";
   link.click();
+}
+
+function handlePointer(x, y) {
+  // const pointer_x = event.clientX;
+  // const pointer_y = event.clientY;
+  // pointer.style.width = `${ctx.lineWidth + 5}px`;
+  // pointer.style.height = `${ctx.lineWidth + 5}px`;
+  // pointer.style.backgroundColor = ctx.strokeStyle;
+  // pointer.style.left = `${x}px`;
+  // pointer.style.top = `${y}px`;
 }
 
 if (canvas) {
