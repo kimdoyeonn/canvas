@@ -3,6 +3,7 @@ const ctx = canvas.getContext("2d");
 const colors = document.getElementsByClassName("jsColor");
 const range = document.getElementById("jsRange");
 const mode = document.getElementById("jsMode");
+const saveBtn = document.getElementById("jsSave");
 
 const INITILA_COLOR = "#2c2c2c";
 const CANVAS_SIZE = 700;
@@ -67,12 +68,26 @@ function handleCanvasClick() {
   }
 }
 
+function handleCM(event) {
+  event.preventDefault(); // 우클릭 비활성화
+}
+
+function handleSaveClick(event) {
+  const image = canvas.toDataURL();
+  const link = document.createElement("a");
+  link.href = image;
+  link.download = "PaintJS[🎨]";
+  link.click();
+}
+
 if (canvas) {
   canvas.addEventListener("mousemove", onMouseMove);
   canvas.addEventListener("mousedown", startPainting);
   canvas.addEventListener("mouseup", stopPainting);
   canvas.addEventListener("mouseleave", stopPainting);
   canvas.addEventListener("click", handleCanvasClick);
+  canvas.addEventListener("contextmenu", handleCM);
+  saveBtn.addEventListener("click", handleSaveClick);
 }
 
 if (colors) {
